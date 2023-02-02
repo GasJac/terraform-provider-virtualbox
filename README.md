@@ -12,22 +12,39 @@ Published documentation is located on the [Terraform Registry](https://registry.
 
 ## Usage
 
+It is recommended to use the following imahe in order to avoid "timeout while waiting for state to become 'yes' (timeout: 5m0s)":
+https://github.com/ccll/terraform-provider-virtualbox-images/releases
+
+Here is working .tf example file:
+
 ```tf
 terraform {
   required_providers {
     virtualbox = {
       source = "terra-farm/virtualbox"
-      version = "<latest-tag>"
+      version = "0.2.2-alpha.1"
     }
   }
 }
 
-provider "virtualbox" {
-  # Configuration options
+# There are currently no configuration options for the provider itself.
+
+resource "virtualbox_vm" "node" {
+  count     = 1
+  name      = "ubuntu"
+  image     = "ubuntu-15.04.tar.xz"
+  cpus      = 2
+  memory    = "512 mib"
+  #user_data = file("${path.module}/user_data")
+
+  network_adapter {
+    type           = "bridged"
+    host_interface = "enp2s0"
+  }
 }
 
-resource "virtualbox_vm" "vm" {
-  // ...
+output "IPAddr" {
+  value = element(virtualbox_vm.node.*.network_adapter.0.ipv4_address, 1)
 }
 ```
 
