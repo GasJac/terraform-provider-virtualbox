@@ -15,7 +15,7 @@ Published documentation is located on the [Terraform Registry](https://registry.
 It is recommended to use the following image in order to avoid timeouts during terraform plan "timeout while waiting for state to become 'yes' (timeout: 5m0s)":
 https://github.com/ccll/terraform-provider-virtualbox-images/releases
 
-Here is working .tf example file:
+Here is a working .tf example file:
 
 ```tf
 terraform {
