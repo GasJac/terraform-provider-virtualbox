@@ -12,8 +12,12 @@ Published documentation is located on the [Terraform Registry](https://registry.
 
 ## Usage
 
-It is recommended to use the following image in order to avoid timeouts during terraform plan "timeout while waiting for state to become 'yes' (timeout: 5m0s)":
+You can use the following image in order to avoid timeouts during terraform plan "timeout while waiting for state to become 'yes' (timeout: 5m0s)":
 https://github.com/ccll/terraform-provider-virtualbox-images/releases
+
+Or download a Vagrant box locally :
+
+ex : https://app.vagrantup.com/generic/boxes/debian10/versions/4.2.10
 
 Here is a working .tf example file:
 
